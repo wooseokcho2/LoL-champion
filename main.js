@@ -252,8 +252,34 @@ const progressEl = document.getElementById('progress');
 // 5. Event Listeners
 startBtn.addEventListener('click', startQuiz);
 restartBtn.addEventListener('click', resetQuiz);
-shareBtn.addEventListener('click', () => {
-    alert("결과 공유 기능은 준비 중입니다! 스크린샷을 찍어 친구들에게 자랑해보세요.");
+shareBtn.addEventListener('click', async () => {
+    const roleName = document.getElementById('champ-role').textContent;
+    const champName = document.getElementById('champ-name').textContent;
+    
+    const shareData = {
+        title: 'LoL 포지션 성향 테스트 결과',
+        text: `나와 가장 잘 맞는 LoL 포지션은 [${roleName}], 추천 챔피언은 [${champName}]입니다! 당신의 스타일도 확인해보세요.`,
+        url: window.location.href
+    };
+
+    // Web Share API (모바일에서 카카오톡, 메시지, 메일 등 앱 선택 팝업을 띄우는 표준 방식)
+    if (navigator.share) {
+        try {
+            await navigator.share(shareData);
+        } catch (err) {
+            if (err.name !== 'AbortError') {
+                console.error('공유 실패:', err);
+            }
+        }
+    } else {
+        // Web Share를 지원하지 않는 환경(주로 PC 브라우저)에서의 대체 동작
+        try {
+            await navigator.clipboard.writeText(window.location.href);
+            alert("테스트 결과 링크가 복사되었습니다!\n카카오톡이나 메신저 창에 붙여넣기(Ctrl+V)해서 친구들에게 보여주세요.\n\n(참고: 앱 선택 팝업은 모바일 기기에서만 지원됩니다.)");
+        } catch (err) {
+            alert("URL 복사에 실패했습니다. 브라우저 주소창의 링크를 직접 복사해 주세요.");
+        }
+    }
 });
 
 // 6. Functions

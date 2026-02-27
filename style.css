@@ -350,3 +350,19 @@ h4 {
     font-size: 1.1rem;
     margin-bottom: 8px;
 }
+
+.share-prompt {
+    background-color: rgba(10, 200, 185, 0.05);
+    border: 1px dashed var(--accent-blue);
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.share-prompt p {
+    color: var(--accent-blue);
+    font-size: 0.95rem;
+    margin-bottom: 0;
+    line-height: 1.5;
+}
