@@ -1,27 +1,32 @@
-# Project Blueprint
+# LoL 포지션 & 챔피언 추천기 Blueprint
 
 ## Overview
+이 프로젝트는 게임을 잘 모르는 사람도 쉽게 답변할 수 있는 일상적인 질문들을 통해, 사용자의 성향을 분석하고 리그 오브 레전드(LoL)의 적합한 포지션과 챔피언을 추천해주는 웹 애플리케이션입니다. **룰베이스(규칙 기반)** 알고리즘을 사용하여 빠르고 정확하게 분석하며, 서버 비용 없이 완전히 무료로 동작합니다.
 
-This document outlines the design, features, and development plan for the web application.
+## Architecture & Technology
+- **프론트엔드:** HTML5, CSS3 (마법공학 다크 테마), Vanilla JavaScript (ES6+).
+- **분석 엔진:** 브라우저 내장 룰베이스 점수 계산 시스템 (각 선택지마다 포지션별/챔피언 성향별 가중치 부여).
+- **배포:** GitHub Pages (정적 호스팅으로 평생 무료).
 
-## Current State
+## Features
+1. **성향 테스트 (비게이머 친화적 5개 질문):**
+   - 갈등 해결 방식, 팀워크, 집중력, 리스크 감수 성향 등 일상적인 상황을 묻는 객관식 질문 제공.
+2. **실시간 점수 계산 (Rule-based):**
+   - 탑(Top), 정글(Jungle), 미드(Mid), 원딜(ADC), 서포터(Support) 5개 포지션에 대한 점수 누적.
+   - 포지션 내에서도 공격/수비, 피지컬/뇌지컬 등 상세 스탯을 바탕으로 최적의 챔피언을 매칭.
+3. **결과 시각화:**
+   - **라인 적합도:** 5개 포지션의 최종 점수를 백분율(Progress Bar)로 시각화하여 가장 잘 맞는 라인 제시.
+   - **챔피언 추천:** 1위 포지션 내에서 가장 성향에 맞는 챔피언 1명 추천 및 재미있는 이유 설명.
+   - **플레이 스타일 가이드:** 챔피언의 핵심 플레이 방법을 비게이머도 이해할 수 있게 쉬운 비유로 설명.
+   - **추천 장인/프로게이머:** 해당 챔피언으로 유명한 스트리머(e.g., 파카, 괴물쥐)나 프로게이머(e.g., 페이커, 쵸비) 소개.
 
-*   **HTML:** Basic HTML structure.
-*   **CSS:** Minimal styling.
-*   **JavaScript:** Empty.
+## Design Concept (Hextech Dark)
+- **배경:** 어두운 네이비/블랙 계열 (e.g., `#0a1428`).
+- **포인트 컬러:** 골드/마법공학 블루 (e.g., `#c89b3c`, `#0ac8b9`).
+- **타이포그래피:** 명확하고 현대적인 산세리프 폰트.
+- **애니메이션:** 부드러운 페이드 인/아웃, 버튼 호버 시 빛나는 효과(Glow).
 
 ## Development Plan
-
-### Iteration 1: Foundation and Styling
-
-*   **Goal:** Create a visually appealing and responsive landing page.
-*   **HTML:**
-    *   Implement a header with a navigation bar.
-    *   Create a main content area with a hero section.
-    *   Add a footer with social media links.
-*   **CSS:**
-    *   Apply a modern color palette and typography.
-    *   Use CSS variables for easy theming.
-    *   Implement a responsive layout with media queries.
-*   **JavaScript:**
-    *   Add smooth scrolling for navigation links.
+1. `index.html`: UI 뼈대 완성 (시작 화면, 질문 화면, 로딩, 결과 화면 - API 키 입력 제거).
+2. `style.css`: 마법공학 테마 스타일링 및 반응형 레이아웃 적용.
+3. `main.js`: 상태 관리, 퀴즈 데이터 및 점수 계산 로직, 결과 매핑(챔피언 DB) 및 렌더링 구현.
