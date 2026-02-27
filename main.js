@@ -384,6 +384,21 @@ function renderResults() {
     const userIsAggressive = scores.aggressive >= scores.safe;
     const userIsTeam = scores.team >= scores.solo;
 
+    // Generate Role Reason Text
+    let traitText = "";
+    if (userIsAggressive && userIsTeam) {
+        traitText = "적극적으로 나서면서도 팀원들과 함께 시너지를 내는 것을 좋아하시는군요!";
+    } else if (userIsAggressive && !userIsTeam) {
+        traitText = "누구의 눈치도 보지 않고 자신의 실력으로 상황을 주도하는 과감한 독고다이 스타일이시네요!";
+    } else if (!userIsAggressive && userIsTeam) {
+        traitText = "안정적이고 신중하게 행동하며, 남을 배려하고 팀워크를 최우선으로 생각하는 든든한 조력자 스타일입니다!";
+    } else {
+        traitText = "위험을 감수하기보단 안전을 추구하며, 묵묵히 자신의 페이스를 유지하는 마이웨이 성향을 가지셨군요!";
+    }
+
+    const roleReasonEl = document.getElementById('role-reason-text');
+    roleReasonEl.innerHTML = `${traitText}<br><br>이러한 당신의 성향을 분석했을 때, <strong>${roleNames[bestRole]}</strong> 포지션이 당신의 능력을 100% 발휘할 수 있는 최고의 자리입니다.`;
+
     const roleChampions = championsDB[bestRole];
     let bestChamp = roleChampions[0];
     let highestMatchScore = -999;

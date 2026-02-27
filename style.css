@@ -241,6 +241,27 @@ button {
 @keyframes spin-reverse { 0% { transform: rotate(360deg); } 100% { transform: rotate(0deg); } }
 
 /* Results Screen */
+.role-analysis {
+    background-color: rgba(30, 35, 40, 0.6);
+    border: 1px solid var(--border-color);
+    padding: 15px 20px;
+    border-radius: 6px;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.role-reason-text {
+    font-size: 1.05rem;
+    color: var(--text-primary);
+    margin-bottom: 0;
+    line-height: 1.5;
+}
+
+.role-reason-text strong {
+    color: var(--accent-gold);
+    font-size: 1.2rem;
+}
+
 .roles-container {
     margin-bottom: 30px;
 }
